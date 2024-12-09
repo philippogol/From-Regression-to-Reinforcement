@@ -1,48 +1,65 @@
-#Polynomial regression
+# polynomial_regression.py
+
+# Implementation of Polynomial Regression using dataset/salary_data.csv
+
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
 
-# Generar datos sintéticos (publicidad vs ingresos)
-np.random.seed(42)
-X = np.random.uniform(0, 10, 100).reshape(-1, 1)  # Inversión en publicidad
-y = 5 * X**2 + 10 * X + 7 + np.random.normal(0, 10, 100).reshape(-1, 1)  # Relación cuadrática con ruido
+def polynomial_regression(X, y, degree):
+    """
+    Perform Polynomial Regression by transforming features to polynomial terms.
 
-# Dividir los datos en conjuntos de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    Parameters:
+    - X: np.array, Independent variable (Years of Experience)
+    - y: np.array, Dependent variable (Salary)
+    - degree: int, Degree of the polynomial terms to include
 
-# Crear características polinómicas
-poly_features = PolynomialFeatures(degree=2)  # Grado del polinomio
-X_train_poly = poly_features.fit_transform(X_train)
-X_test_poly = poly_features.transform(X_test)
+    Returns:
+    - model: Trained Polynomial Regression model
+    - poly: PolynomialFeatures object for feature transformation
+    """
+    # Transform input features into polynomial features
+    poly = PolynomialFeatures(degree=degree)
+    X_poly = poly.fit_transform(X.reshape(-1, 1))
 
-# Ajustar modelo de regresión lineal sobre características polinómicas
-model = LinearRegression()
-model.fit(X_train_poly, y_train)
+    # Train a linear regression model on the polynomial features
+    model = LinearRegression()
+    model.fit(X_poly, y)
 
-# Predicciones
-y_pred = model.predict(X_test_poly)
+    return model, poly
 
-# Evaluación del modelo
-mse = mean_squared_error(y_test, y_pred)
-r2 = r2_score(y_test, y_pred)
-print(f"Mean Squared Error: {mse:.2f}")
-print(f"R² Score: {r2:.2f}")
 
-# Visualizar resultados
-plt.scatter(X, y, color="blue", label="Datos reales")
-plt.scatter(X_test, y_pred, color="red", label="Predicciones", alpha=0.7)
-plt.plot(
-    np.sort(X, axis=0), 
-    model.predict(poly_features.transform(np.sort(X, axis=0))),
-    color="green", label="Regresión Polinómica"
-)
-plt.title("Regresión Polinómica: Publicidad vs Ingresos")
-plt.xlabel("Inversión en Publicidad (x1000 USD)")
-plt.ylabel("Ingresos (x1000 USD)")
-plt.legend()
-plt.grid(alpha=0.3)
-plt.show()
+if __name__ == "__main__":
+    # Load dataset
+    data = pd.read_csv('dataset/salary_data.csv')
+    X = data['YearsExperience'].values  # Independent variable: Years of Experience
+    y = data['Salary'].values  # Dependent variable: Salary
+
+    # Polynomial Regression with a chosen degree
+    degree = 3  # Degree of the polynomial
+    model, poly = polynomial_regression(X, y, degree)
+    print(f"Polynomial Regression coefficients: {model.coef_}")
+    print(f"Intercept: {model.intercept_:.4f}")
+
+    # Predict new values
+    new_X = np.array([6, 7, 8]).reshape(-1, 1)
+    new_X_poly = poly.transform(new_X)
+    predictions = model.predict(new_X_poly)
+    print("\nPredictions:")
+    for exp, pred in zip(new_X.flatten(), predictions):
+        print(f"Years of Experience: {exp}, Predicted Salary: ${pred:.2f}")
+
+    # Visualization
+    X_poly = poly.transform(X.reshape(-1, 1))
+    plt.scatter(X, y, color="blue", label="Actual Data")
+    plt.plot(X, model.predict(X_poly), color="orange", label="Polynomial Regression Line")
+    plt.scatter(new_X, predictions, color="red", label="Predictions", marker='x', s=100)
+    plt.title(f"Polynomial Regression (Degree = {degree})")
+    plt.xlabel("Years of Experience")
+    plt.ylabel("Salary (USD)")
+    plt.legend()
+    plt.grid(alpha=0.3)
+    plt.show()
