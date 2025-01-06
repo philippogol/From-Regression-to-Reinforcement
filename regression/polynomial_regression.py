@@ -1,6 +1,10 @@
 # polynomial_regression.py
 
-# Implementation of Polynomial Regression using dataset/salary_data.csv
+# This script implements Polynomial Regression using the dataset 'salary_data.csv'.
+# Polynomial Regression extends Linear Regression by modeling the relationship
+# between variables as an nth-degree polynomial, allowing for the capture of 
+# non-linear trends while retaining interpretability.
+
 
 import numpy as np
 import pandas as pd
@@ -34,7 +38,7 @@ def polynomial_regression(X, y, degree):
 
 if __name__ == "__main__":
     # Load dataset
-    data = pd.read_csv('dataset/salary_data.csv')
+    data = pd.read_csv('../dataset/salary_data.csv')
     X = data['YearsExperience'].values  # Independent variable: Years of Experience
     y = data['Salary'].values  # Dependent variable: Salary
 

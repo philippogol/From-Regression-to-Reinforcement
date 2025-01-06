@@ -33,7 +33,7 @@ def random_forest_regression(X, y, n_estimators=100, max_depth=None):
 
 if __name__ == "__main__":
     # Load dataset
-    data = pd.read_csv('dataset/salary_data.csv')
+    data = pd.read_csv('../dataset/salary_data.csv')
     X = data['YearsExperience'].values  # Independent variable: Years of Experience
     y = data['Salary'].values  # Dependent variable: Salary
 

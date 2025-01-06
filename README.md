@@ -7,7 +7,7 @@ A comprehensive collection of **Machine Learning algorithms**, showcasing implem
 
 ## Features
 - **Supervised Learning**
-  - Regression Algorithms (e.g., Linear Regression, Neural Networks, Random Forests)
+  - Regression Algorithms (e.g., Linear Regression, Support Vector Regression, Polynomial Regression)
   - Classification Algorithms (e.g., Logistic Regression, SVM, KNN)
 - **Unsupervised Learning** *(coming soon!)*
   - Clustering (e.g., K-Means, DBSCAN)
@@ -21,17 +21,31 @@ A comprehensive collection of **Machine Learning algorithms**, showcasing implem
 ## Getting Started
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/YourUsername/ML-Algorithms-Hub.git
-   cd ML-Algorithms-Hub
+   git clone https://github.com/philippogol/From-Regression-to-Reinforcement.git
+   cd From-Regression-to-Reinforcement
    ```
-2. **Install dependencies:**
+
+2. **Virtual Environment Setup:**
+   - Create a virtual environment:
+     ```bash
+     python3 -m venv venv
+     ```
+   - Activate the virtual environment:
+     ```bash
+     source venv/bin/activate
+     ```
+
+3. **Install Required Libraries:**
    ```bash
    pip install -r requirements.txt
    ```
-3. **Run examples:**
-   - Navigate to a folder (e.g., `supervised/regression/`) and execute:
+
+4. **Run Examples:**
+   - Navigate to the desired folder or script and execute:
      ```bash
-     python linear_regression.py
+     python3 regression/linear_regression.py
+     python3 regression/support_vector_regression.py
+     python3 regression/polynomial_regression.py
      ```
 
 ---

@@ -38,7 +38,7 @@ def principal_component_regression(X, y, n_components):
 
 if __name__ == "__main__":
     # Load dataset
-    data = pd.read_csv('dataset/salary_data.csv')
+    data = pd.read_csv('../dataset/salary_data.csv')
     X = data['YearsExperience'].values.reshape(-1, 1)  # Independent variable: Years of Experience
     y = data['Salary'].values  # Dependent variable: Salary
 

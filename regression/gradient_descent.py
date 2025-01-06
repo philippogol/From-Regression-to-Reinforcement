@@ -50,7 +50,7 @@ def gradient_descent(X, y, learning_rate=0.01, iterations=1000):
 
 if __name__ == "__main__":
     # Load dataset
-    data = pd.read_csv('dataset/salary_data.csv')
+    data = pd.read_csv('../dataset/salary_data.csv')
     X = data['YearsExperience'].values  # Independent variable: Years of Experience
     y = data['Salary'].values  # Dependent variable: Salary
 
