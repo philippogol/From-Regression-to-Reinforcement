@@ -21,7 +21,7 @@ A comprehensive collection of **Machine Learning algorithms**, showcasing implem
 ## Getting Started
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/philippogol/From-Regression-to-Reinforcement.git
+   git clone https://github.com/philippogol/ML-From-Regression-to-Reinforcement.git
    cd From-Regression-to-Reinforcement
    ```
 
