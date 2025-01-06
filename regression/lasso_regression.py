@@ -2,6 +2,7 @@
 # Implementation of Lasso Regression using dataset/salary_data.csv
 # Lasso Regression is useful for feature selection by shrinking some coefficients to zero.
 
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -81,7 +82,9 @@ def lasso_regression(X_train, y_train, alpha):
 
 if __name__ == "__main__":
     # Load dataset
-    data = pd.read_csv('../dataset/salary_data.csv')
+    script_dir = os.path.dirname(os.path.abspath(__file__))  # Directory where the script is located
+    dataset_path = os.path.join(script_dir, '../dataset/salary_data.csv')
+    data = pd.read_csv(dataset_path)
 
     # Preprocess the data
     X, y, preprocessor, feature_names = preprocess_data(data, is_training=True)

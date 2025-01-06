@@ -2,6 +2,7 @@
 
 # Implementation of the Normal Equation for Linear Regression using dataset/salary_data.csv
 
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -28,7 +29,10 @@ def normal_equation(X, y):
 
 if __name__ == "__main__":
     # Load dataset
-    data = pd.read_csv('../dataset/salary_data.csv')
+    script_dir = os.path.dirname(os.path.abspath(__file__))  # Directory where the script is located
+    dataset_path = os.path.join(script_dir, '../dataset/salary_data.csv')
+    data = pd.read_csv(dataset_path)
+    
     X = data['YearsExperience'].values  # Independent variable: Years of Experience
     y = data['Salary'].values  # Dependent variable: Salary
 

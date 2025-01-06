@@ -3,6 +3,7 @@
 # Implementation of Principal Component Regression (PCR) using dataset/salary_data.csv
 # Use PCR when dealing with high-dimensional data or multicollinearity among predictors.
 
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -38,7 +39,10 @@ def principal_component_regression(X, y, n_components):
 
 if __name__ == "__main__":
     # Load dataset
-    data = pd.read_csv('../dataset/salary_data.csv')
+    script_dir = os.path.dirname(os.path.abspath(__file__))  # Directory where the script is located
+    dataset_path = os.path.join(script_dir, '../dataset/salary_data.csv')
+    data = pd.read_csv(dataset_path)
+    
     X = data['YearsExperience'].values.reshape(-1, 1)  # Independent variable: Years of Experience
     y = data['Salary'].values  # Dependent variable: Salary
 

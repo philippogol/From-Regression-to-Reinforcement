@@ -3,7 +3,7 @@
 # This script implements Linear Regression using the dataset 'salary_data.csv'.
 # Linear Regression is effective for modeling linear relationships and provides
 # an interpretable model with coefficients and an intercept.
-
+import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -11,8 +11,9 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 
-# Cargar datos reales
-data = pd.read_csv('../dataset/salary_data.csv')
+script_dir = os.path.dirname(os.path.abspath(__file__))  # Directory where the script is located
+dataset_path = os.path.join(script_dir, '../dataset/salary_data.csv')
+data = pd.read_csv(dataset_path)
 
 # Variables independientes (años de experiencia) y dependientes (salario)
 X = data['YearsExperience'].values.reshape(-1, 1)  # Convertir a matriz 2D

@@ -3,6 +3,7 @@
 # Implementation of Gradient-Boosted Regression using dataset/salary_data.csv
 # Gradient-Boosted Regression combines weak learners to minimize error iteratively.
 
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -34,7 +35,9 @@ def gradient_boosted_regression(X, y, n_estimators=100, learning_rate=0.1, max_d
 
 if __name__ == "__main__":
     # Load dataset
-    data = pd.read_csv('../dataset/salary_data.csv')
+    script_dir = os.path.dirname(os.path.abspath(__file__))  # Directory where the script is located
+    dataset_path = os.path.join(script_dir, '../dataset/salary_data.csv')
+    data = pd.read_csv(dataset_path)
     X = data['YearsExperience'].values  # Independent variable: Years of Experience
     y = data['Salary'].values  # Dependent variable: Salary
 
